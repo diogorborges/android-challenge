@@ -1,30 +1,82 @@
 apply plugin: 'com.android.application'
 
-android {
-    compileSdkVersion 28
+apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion config.compileSdkVersion
     defaultConfig {
         applicationId "es.npatarino.android.gotchallenge"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions {
+        checkAllWarnings true
+        warningsAsErrors true
+        baseline file("lint-baseline.xml")
+    }
+    androidExtensions {
+        experimental = true
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.android.support:support-v4:28.0.0'
+    def uiDependencies = rootProject.ext.uiDependencies
+    def googleDependencies = rootProject.ext.googleDependencies
+    def squareDependencies = rootProject.ext.squareDependencies
+    def testDependencies = rootProject.ext.testDependencies
+    def rxDependencies = rootProject.ext.rxDependencies
+    def kotlinDependencies = rootProject.ext.kotlinDependencies
+    def apacheDependencies = rootProject.ext.apacheDependencies
+
+    implementation uiDependencies.flexibleAdapter
+    implementation uiDependencies.flexibleAdapterUI
+    implementation uiDependencies.glide
+    kapt uiDependencies.glideCompiler
+
+    implementation googleDependencies.appCompat
+    implementation googleDependencies.material
+    implementation googleDependencies.cardView
+    implementation googleDependencies.recyclerView
+    implementation googleDependencies.constraint
+    implementation googleDependencies.roomRunTime
+    implementation googleDependencies.roomRx
+    kapt googleDependencies.roomCompiler
+    implementation googleDependencies.dagger
+    kapt googleDependencies.daggerCompiler
+
+    implementation squareDependencies.retrofit
+    implementation squareDependencies.retrofit2gson
+    implementation squareDependencies.retrofit2rxjavaAdapter
+    implementation squareDependencies.okhttp3
+    implementation squareDependencies.okhttp3logging
+
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoInline
+    androidTestImplementation testDependencies.espresso
+    androidTestImplementation testDependencies.rules
+    testImplementation testDependencies.testRunner
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.json
+
+    implementation rxDependencies.rxJava
+    implementation rxDependencies.rxAndroid
+    implementation kotlinDependencies.kotlinStdlib
+    implementation kotlinDependencies.ktx
+
     implementation 'com.squareup.picasso:picasso:2.71828'
-    testImplementation 'junit:junit:4.12'
+
+    implementation apacheDependencies.apache
 }
+
+apply plugin: 'kotlin-android-extensions'
