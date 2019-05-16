@@ -4,6 +4,7 @@ import android.util.Log
 import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.common.addTo
 import es.npatarino.android.gotchallenge.data.model.Character
+import es.npatarino.android.gotchallenge.data.usecase.CharactersByQueryUseCase
 import es.npatarino.android.gotchallenge.data.usecase.CharactersUseCase
 import es.npatarino.android.gotchallenge.presentation.ui.CharactersListItems
 import es.npatarino.android.gotchallenge.presentation.ui.ListHeader
@@ -17,7 +18,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CharactersPresenter @Inject constructor(
-    private val charactersUseCase: CharactersUseCase
+    private val charactersUseCase: CharactersUseCase,
+    private val charactersByQueryUseCase: CharactersByQueryUseCase
 ) : CharactersContract.Presenter {
 
     private val openCharacterObserver = PublishSubject.create<Character>()
@@ -38,7 +40,7 @@ class CharactersPresenter @Inject constructor(
     private fun setupOpenCharacterDetailsChangedEvent(): Disposable =
         openCharacterObserver
             .subscribe(
-                { /**view.onCharacterClicked(it) */ },
+                { view.onCharacterClicked(it) },
                 { Log.e(TAG, "Error: $it") })
 
     private fun getCharacters() {
@@ -78,8 +80,8 @@ class CharactersPresenter @Inject constructor(
 
     private fun onError(throwable: Throwable) = view.showError(throwable.message)
 
-    fun searchQuery(query: String) {
-        val disposable = charactersUseCase.searchQuery(query)
+    fun getCharacterByQuery(query: String) {
+        val disposable = charactersByQueryUseCase.getCharacterByQuery(query)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .debounce(300, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
@@ -90,5 +92,4 @@ class CharactersPresenter @Inject constructor(
     }
 
     fun destroy() = compositeDisposable.dispose()
-
 }

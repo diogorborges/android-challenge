@@ -3,7 +3,9 @@ package es.npatarino.android.gotchallenge.presentation.ui
 import android.view.View
 import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.common.clickWithDebounce
-import es.npatarino.android.gotchallenge.data.model.Character
+import es.npatarino.android.gotchallenge.common.getHouseImage
+import es.npatarino.android.gotchallenge.common.getString
+import es.npatarino.android.gotchallenge.common.setThumbnailImage
 import es.npatarino.android.gotchallenge.data.model.House
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractSectionableItem
@@ -11,9 +13,8 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import io.reactivex.subjects.Subject
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_character.descriptionText
-import kotlinx.android.synthetic.main.item_character.sourceTitleText
-import kotlinx.android.synthetic.main.item_character.urlText
+import kotlinx.android.synthetic.main.item_list.nameText
+import kotlinx.android.synthetic.main.item_list.thumbnailImage
 
 class HousesListItems(
     listHeader: ListHeader,
@@ -21,7 +22,7 @@ class HousesListItems(
     private val openHouseObserver: Subject<House>
 ) : AbstractSectionableItem<HousesListItems.ViewHolder, ListHeader>(listHeader) {
 
-    override fun getLayoutRes(): Int = R.layout.item_character
+    override fun getLayoutRes(): Int = R.layout.item_list
 
     override fun createViewHolder(
         view: View,
@@ -45,23 +46,20 @@ class HousesListItems(
             house: House,
             openHouseObserver: Subject<House>
         ) {
-            setSourceTitleText(house)
-            setDescriptionText(house)
-            setUrlText(house)
+            setHouseName(house)
+            setHouseImage(house)
 
             setOpenArticleDetails(house, openHouseObserver)
         }
 
-        private fun setSourceTitleText(house: House) = with(sourceTitleText) {
-            text = house.houseName
+        private fun setHouseImage(house: House) = with(thumbnailImage) {
+            setThumbnailImage(this, getHouseImage(house.houseName))
         }
 
-        private fun setDescriptionText(house: House) = with(descriptionText) {
-            text = house.houseImageUrl
-        }
-
-        private fun setUrlText(house: House) = with(urlText) {
-            text = house.houseId
+        private fun setHouseName(house: House) = with(nameText) {
+            text = if (house.houseName.isNotEmpty()) {
+                house.houseName
+            } else getString(R.string.no_name)
         }
 
         private fun setOpenArticleDetails(

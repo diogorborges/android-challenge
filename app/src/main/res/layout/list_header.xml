@@ -16,7 +16,7 @@
         android:layout_marginEnd="@dimen/default_margin_size"
         android:layout_marginBottom="@dimen/default_margin_size"
         android:fontFamily="@font/rubik_bold"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

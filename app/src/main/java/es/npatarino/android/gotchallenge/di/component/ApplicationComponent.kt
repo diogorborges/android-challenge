@@ -6,6 +6,7 @@ import es.npatarino.android.gotchallenge.data.remote.GotService
 import es.npatarino.android.gotchallenge.di.module.RestModule
 import es.npatarino.android.gotchallenge.di.module.RoomModule
 import es.npatarino.android.gotchallenge.presentation.MainActivity
+import es.npatarino.android.gotchallenge.presentation.characterdetail.CharacterDetailFragment
 import es.npatarino.android.gotchallenge.presentation.characters.CharactersFragment
 import es.npatarino.android.gotchallenge.presentation.charactershouse.CharactersHouseFragment
 import es.npatarino.android.gotchallenge.presentation.houses.HousesFragment
@@ -26,4 +27,6 @@ interface ApplicationComponent {
     fun inject(fragment: HousesFragment)
 
     fun inject(fragment: CharactersHouseFragment)
+
+    fun inject(fragment: CharacterDetailFragment)
 }

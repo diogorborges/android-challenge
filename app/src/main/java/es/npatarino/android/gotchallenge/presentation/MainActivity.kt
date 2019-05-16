@@ -77,8 +77,7 @@ class MainActivity : AppCompatActivity(),
 
     fun showBackButton(show: Boolean) = with(toolbar) {
         when (show) {
-            true -> navigationIcon =
-                resources.getDrawable(R.drawable.ic_apps_white_24dp)
+            true -> navigationIcon = resources.getDrawable(R.drawable.ic_white_back_arow)
             else -> navigationIcon = null
         }
     }

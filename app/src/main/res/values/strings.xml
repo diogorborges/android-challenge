@@ -6,7 +6,8 @@
     <string name="title_houses">Houses</string>
     <string name="title_characters">Characters</string>
     <string name="houses_header">Characters Place</string>
-    <string name="characters_header">Game of Throne Characters</string>
+    <string name="characters_header">Who\'s the real King?</string>
     <string name="article_header">Your latest articles</string>
     <string name="error_text">Please try again.</string>
+    <string name="no_name">No Name</string>
 </resources>

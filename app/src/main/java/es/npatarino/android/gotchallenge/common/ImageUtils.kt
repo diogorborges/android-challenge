@@ -4,7 +4,7 @@ import android.widget.ImageView
 import com.bumptech.glide.request.RequestOptions
 import es.npatarino.android.gotchallenge.R
 
-fun setThumbnailImage(imageView: ImageView, path: String?) {
+fun setThumbnailImage(imageView: ImageView, path: Int) {
     GlideApp.with(imageView)
         .load(path)
         .apply(RequestOptions().circleCrop())

@@ -17,7 +17,7 @@ interface CharactersDao {
     fun insertCharacters(vararg characters: Character)
 
     @Query("SELECT * from characters WHERE name LIKE :query")
-    fun searchQuery(query: String): Observable<List<Character>>
+    fun getCharacterByQuery(query: String): Observable<List<Character>>
 
     @Query("SELECT * from characters WHERE houseId=:houseId")
     fun getCharactersHouse(houseId: String): Single<List<Character>>

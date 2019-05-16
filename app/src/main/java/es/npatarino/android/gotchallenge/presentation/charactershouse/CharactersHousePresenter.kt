@@ -5,7 +5,6 @@ import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.common.addTo
 import es.npatarino.android.gotchallenge.data.model.Character
 import es.npatarino.android.gotchallenge.data.usecase.CharactersHouseUseCase
-import es.npatarino.android.gotchallenge.data.usecase.CharactersUseCase
 import es.npatarino.android.gotchallenge.presentation.ui.CharactersListItems
 import es.npatarino.android.gotchallenge.presentation.ui.ListHeader
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
@@ -29,20 +28,23 @@ class CharactersHousePresenter @Inject constructor(
         private const val TAG = "CharHousePresenter"
     }
 
-    override fun setView(charactersHouseFragment: CharactersHouseFragment) {
+    override fun setView(
+        charactersHouseFragment: CharactersHouseFragment,
+        houseId: String
+    ) {
         view = charactersHouseFragment
         setupOpenCharacterDetailsChangedEvent()
-        getCharactersHouse()
+        getCharactersHouse(houseId)
     }
 
     private fun setupOpenCharacterDetailsChangedEvent(): Disposable =
         openCharacterObserver
             .subscribe(
-                { /**view.onCharacterClicked(it) */ },
+                { view.onCharacterClicked(it) },
                 { Log.e(TAG, "Error: $it") })
 
-    private fun getCharactersHouse() {
-        val disposable = charactersHouseUseCase.getCharactersHouse()
+    private fun getCharactersHouse(houseId: String) {
+        val disposable = charactersHouseUseCase.getCharactersHouse(houseId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {

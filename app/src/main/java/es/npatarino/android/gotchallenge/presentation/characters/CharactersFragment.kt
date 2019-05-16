@@ -14,7 +14,9 @@ import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.common.gone
 import es.npatarino.android.gotchallenge.common.inflate
 import es.npatarino.android.gotchallenge.common.visible
+import es.npatarino.android.gotchallenge.data.model.Character
 import es.npatarino.android.gotchallenge.presentation.MainActivity
+import es.npatarino.android.gotchallenge.presentation.characterdetail.CharacterDetailFragment
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import kotlinx.android.synthetic.main.fragment_characters.errorText
@@ -45,7 +47,7 @@ class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQue
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = container?.inflate(R.layout.fragment_characters)
+    ): View? = container?.inflate(es.npatarino.android.gotchallenge.R.layout.fragment_characters)
 
     @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +73,7 @@ class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQue
     override fun onQueryTextSubmit(query: String?): Boolean = false
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        presenter.searchQuery("%${newText!!}%")
+        presenter.getCharacterByQuery("%${newText!!}%")
         return false
     }
 
@@ -80,21 +82,21 @@ class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQue
         errorText.visible()
     }
 
-//    override fun onCharacterClicked(character: Character) {
-//        val bundle = Bundle()
-//        bundle.putParcelable(KEY, character)
-//
-//        val fragment = ArticleListFragment()
-//        fragment.arguments = bundle
-//
-//        (context as MainActivity)
-//            .supportFragmentManager
-//            .beginTransaction()
-//            .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-//            .add(R.id.main_container, fragment, MainActivity.FRAGMENT_KEY)
-//            .addToBackStack(null)
-//            .commit()
-//    }
+    override fun onCharacterClicked(character: Character) {
+        val bundle = Bundle()
+        bundle.putParcelable(KEY, character)
+
+        val fragment = CharacterDetailFragment()
+        fragment.arguments = bundle
+
+        (context as MainActivity)
+            .supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            .add(R.id.main_container, fragment, MainActivity.FRAGMENT_KEY)
+            .addToBackStack(null)
+            .commit()
+    }
 
     override fun showLoader(show: Boolean) = with(progressBarLayout) {
         when (show) {

@@ -23,9 +23,9 @@ class GotApiLocalDataSource @Inject constructor(
     fun insertHouses(vararg house: House): Completable =
         Completable.fromAction { housesDao.insertHouses(*house) }
 
-    fun searchQuery(query: String): Observable<ArrayList<Character>> =
-        charactersDao.searchQuery(query).map { ArrayList(it) }
+    fun getCharacterByQuery(query: String): Observable<ArrayList<Character>> =
+        charactersDao.getCharacterByQuery(query).map { ArrayList(it) }
 
-    fun getCharactersHouse(): Single<ArrayList<Character>> =
-        charactersDao.getCharactersHouse().map { ArrayList(it) }
+    fun getCharactersHouse(houseId: String): Single<ArrayList<Character>> =
+        charactersDao.getCharactersHouse(houseId).map { ArrayList(it) }
 }

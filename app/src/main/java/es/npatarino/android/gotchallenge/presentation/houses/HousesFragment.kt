@@ -56,14 +56,17 @@ class HousesFragment : Fragment(), HousesContract.View {
     }
 
     private fun setupUI() {
-        (activity as MainActivity).showBackButton(false)
-
         adapter = FlexibleAdapter(ArrayList<AbstractFlexibleItem<*>>())
         adapter.isAnimateChangesWithDiffUtil = true
 
         sourcesList.adapter = adapter
         sourcesList.layoutManager = LinearLayoutManager(context)
         sourcesList.isNestedScrollingEnabled = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).showBackButton(false)
     }
 
     private fun showErrorMessage() {

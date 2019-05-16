@@ -13,5 +13,6 @@ class CharactersHouseRepository @Inject constructor(
         private const val TAG = "CharHouseRepository"
     }
 
-    fun getCharactersHouse(): Single<ArrayList<Character>> = Single.just(arrayListOf())
+    fun getCharactersHouse(houseId: String): Single<ArrayList<Character>> =
+        gotLocalDataSource.getCharactersHouse(houseId)
 }

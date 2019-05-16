@@ -100,6 +100,6 @@ class CharactersRepository @Inject constructor(
     private fun insertCharacters(vararg characters: Character): Completable =
         gotLocalDataSource.insertCharacters(*characters)
 
-    fun searchQuery(query: String): Observable<ArrayList<Character>> =
-        gotLocalDataSource.searchQuery(query)
+    fun getCharacterByQuery(query: String): Observable<ArrayList<Character>> =
+        gotLocalDataSource.getCharacterByQuery(query)
 }
