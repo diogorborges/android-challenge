@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import es.npatarino.android.gotchallenge.data.model.house.House
+import es.npatarino.android.gotchallenge.data.model.House
 import io.reactivex.Single
 
 @Dao

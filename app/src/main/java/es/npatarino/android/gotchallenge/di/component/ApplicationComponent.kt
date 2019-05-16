@@ -7,6 +7,8 @@ import es.npatarino.android.gotchallenge.di.module.RestModule
 import es.npatarino.android.gotchallenge.di.module.RoomModule
 import es.npatarino.android.gotchallenge.presentation.MainActivity
 import es.npatarino.android.gotchallenge.presentation.characters.CharactersFragment
+import es.npatarino.android.gotchallenge.presentation.charactershouse.CharactersHouseFragment
+import es.npatarino.android.gotchallenge.presentation.houses.HousesFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -20,4 +22,8 @@ interface ApplicationComponent {
     fun inject(activity: MainActivity)
 
     fun inject(fragment: CharactersFragment)
+
+    fun inject(fragment: HousesFragment)
+
+    fun inject(fragment: CharactersHouseFragment)
 }

@@ -1,6 +1,6 @@
 package es.npatarino.android.gotchallenge.data.remote
 
-import es.npatarino.android.gotchallenge.data.model.character.Character
+import es.npatarino.android.gotchallenge.data.model.Character
 import io.reactivex.Single
 import retrofit2.http.GET
 

@@ -1,4 +1,4 @@
-package es.npatarino.android.gotchallenge.presentation.characters
+package es.npatarino.android.gotchallenge.presentation.charactershouse
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -15,6 +15,8 @@ import es.npatarino.android.gotchallenge.common.gone
 import es.npatarino.android.gotchallenge.common.inflate
 import es.npatarino.android.gotchallenge.common.visible
 import es.npatarino.android.gotchallenge.presentation.MainActivity
+import es.npatarino.android.gotchallenge.presentation.characters.CharactersContract
+import es.npatarino.android.gotchallenge.presentation.characters.CharactersPresenter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import kotlinx.android.synthetic.main.fragment_characters.errorText
@@ -23,17 +25,17 @@ import kotlinx.android.synthetic.main.fragment_characters.searchView
 import kotlinx.android.synthetic.main.fragment_characters.sourcesList
 import javax.inject.Inject
 
-class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQueryTextListener {
+class CharactersHouseFragment : Fragment(), CharactersHouseContract.View {
 
     @Inject
-    lateinit var presenter: CharactersPresenter
+    lateinit var presenter: CharactersHousePresenter
 
     private lateinit var adapter: FlexibleAdapter<AbstractFlexibleItem<*>>
 
     companion object {
-        const val TITLE = "Characters"
-        private const val TAG = "CharactersFragment"
-        const val KEY = "Characters"
+        const val TITLE = "Characters House"
+        private const val TAG = "CharactersHouseFragment"
+        const val KEY = "CharactersHouse"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +58,7 @@ class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQue
     }
 
     private fun setupUI() {
-        (activity as MainActivity).showBackButton(false)
+        (activity as MainActivity).showBackButton(true)
 
         adapter = FlexibleAdapter(ArrayList<AbstractFlexibleItem<*>>())
         adapter.isAnimateChangesWithDiffUtil = true
@@ -64,15 +66,6 @@ class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQue
         sourcesList.adapter = adapter
         sourcesList.layoutManager = LinearLayoutManager(context)
         sourcesList.isNestedScrollingEnabled = true
-
-        searchView.setOnQueryTextListener(this)
-    }
-
-    override fun onQueryTextSubmit(query: String?): Boolean = false
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        presenter.searchQuery("%${newText!!}%")
-        return false
     }
 
     private fun showErrorMessage() {

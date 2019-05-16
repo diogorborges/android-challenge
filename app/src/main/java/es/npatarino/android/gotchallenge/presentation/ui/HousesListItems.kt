@@ -4,6 +4,7 @@ import android.view.View
 import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.common.clickWithDebounce
 import es.npatarino.android.gotchallenge.data.model.Character
+import es.npatarino.android.gotchallenge.data.model.House
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractSectionableItem
 import eu.davidea.flexibleadapter.items.IFlexible
@@ -14,11 +15,11 @@ import kotlinx.android.synthetic.main.item_character.descriptionText
 import kotlinx.android.synthetic.main.item_character.sourceTitleText
 import kotlinx.android.synthetic.main.item_character.urlText
 
-class CharactersListItems(
+class HousesListItems(
     listHeader: ListHeader,
-    private val character: Character,
-    private val openCharacterObserver: Subject<Character>
-) : AbstractSectionableItem<CharactersListItems.ViewHolder, ListHeader>(listHeader) {
+    private val house: House,
+    private val openHouseObserver: Subject<House>
+) : AbstractSectionableItem<HousesListItems.ViewHolder, ListHeader>(listHeader) {
 
     override fun getLayoutRes(): Int = R.layout.item_character
 
@@ -33,47 +34,47 @@ class CharactersListItems(
         position: Int,
         payloads: List<Any>
     ) = holder.bind(
-        character,
-        openCharacterObserver
+        house,
+        openHouseObserver
     )
 
     class ViewHolder(override var containerView: View?, adapter: FlexibleAdapter<*>) :
         FlexibleViewHolder(containerView, adapter), LayoutContainer {
 
         fun bind(
-            character: Character,
-            openCharacterObserver: Subject<Character>
+            house: House,
+            openHouseObserver: Subject<House>
         ) {
-            setSourceTitleText(character)
-            setDescriptionText(character)
-            setUrlText(character)
+            setSourceTitleText(house)
+            setDescriptionText(house)
+            setUrlText(house)
 
-            setOpenArticleDetails(character, openCharacterObserver)
+            setOpenArticleDetails(house, openHouseObserver)
         }
 
-        private fun setSourceTitleText(character: Character) = with(sourceTitleText) {
-            text = character.name
+        private fun setSourceTitleText(house: House) = with(sourceTitleText) {
+            text = house.houseName
         }
 
-        private fun setDescriptionText(character: Character) = with(descriptionText) {
-            text = character.imageUrl
+        private fun setDescriptionText(house: House) = with(descriptionText) {
+            text = house.houseImageUrl
         }
 
-        private fun setUrlText(character: Character) = with(urlText) {
-            text = character.description
+        private fun setUrlText(house: House) = with(urlText) {
+            text = house.houseId
         }
 
         private fun setOpenArticleDetails(
-            character: Character,
-            openCharacterObserver: Subject<Character>
+            house: House,
+            openHouseObserver: Subject<House>
         ) = containerView?.clickWithDebounce {
-            openCharacterObserver.onNext(character)
+            openHouseObserver.onNext(house)
         }
     }
 
     override fun equals(other: Any?): Boolean =
-        if (other is CharactersListItems) character == other.character
+        if (other is HousesListItems) house == other.house
         else false
 
-    override fun hashCode(): Int = character.hashCode()
+    override fun hashCode(): Int = house.hashCode()
 }

@@ -1,7 +1,7 @@
 package es.npatarino.android.gotchallenge.data.local
 
-import es.npatarino.android.gotchallenge.data.model.character.Character
-import es.npatarino.android.gotchallenge.data.model.house.House
+import es.npatarino.android.gotchallenge.data.model.Character
+import es.npatarino.android.gotchallenge.data.model.House
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -25,4 +25,7 @@ class GotApiLocalDataSource @Inject constructor(
 
     fun searchQuery(query: String): Observable<ArrayList<Character>> =
         charactersDao.searchQuery(query).map { ArrayList(it) }
+
+    fun getCharactersHouse(): Single<ArrayList<Character>> =
+        charactersDao.getCharactersHouse().map { ArrayList(it) }
 }

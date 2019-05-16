@@ -7,8 +7,8 @@ import es.npatarino.android.gotchallenge.common.ListUtils
 import es.npatarino.android.gotchallenge.common.hasNetwork
 import es.npatarino.android.gotchallenge.data.NetworkException
 import es.npatarino.android.gotchallenge.data.local.GotApiLocalDataSource
-import es.npatarino.android.gotchallenge.data.model.character.Character
-import es.npatarino.android.gotchallenge.data.model.house.House
+import es.npatarino.android.gotchallenge.data.model.Character
+import es.npatarino.android.gotchallenge.data.model.House
 import es.npatarino.android.gotchallenge.data.remote.GotRemoteDataSource
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -67,7 +67,11 @@ class CharactersRepository @Inject constructor(
         houseIdList.forEach { houseId ->
             characterList.forEach {
                 if (it.houseId.contains(houseId)) house =
-                    House(it.houseId, it.houseImageUrl, it.houseName)
+                    House(
+                        it.houseId,
+                        it.houseImageUrl,
+                        it.houseName
+                    )
             }
             house?.let { houseList.add(it) }
         }

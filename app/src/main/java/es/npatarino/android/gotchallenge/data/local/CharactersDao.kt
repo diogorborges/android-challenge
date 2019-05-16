@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import es.npatarino.android.gotchallenge.data.model.character.Character
+import es.npatarino.android.gotchallenge.data.model.Character
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -18,4 +18,7 @@ interface CharactersDao {
 
     @Query("SELECT * from characters WHERE name LIKE :query")
     fun searchQuery(query: String): Observable<List<Character>>
+
+    @Query("SELECT * from characters WHERE houseId=:houseId")
+    fun getCharactersHouse(houseId: String): Single<List<Character>>
 }

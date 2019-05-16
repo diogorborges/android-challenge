@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/navigation_sources"
+        android:id="@+id/navigation_characters"
         android:icon="@drawable/ic_apps_black_24dp"
-        android:title="@string/title_sources" />
+        android:title="@string/title_characters" />
 
     <item
-        android:id="@+id/navigation_news"
+        android:id="@+id/navigation_houses"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_news" />
-
+        android:title="@string/title_houses" />
 </menu>

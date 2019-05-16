@@ -1,17 +1,16 @@
-package es.npatarino.android.gotchallenge.presentation.characters
+package es.npatarino.android.gotchallenge.presentation.charactershouse
 
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 
-interface CharactersContract {
+interface CharactersHouseContract {
 
     interface View {
         fun showLoader(show: Boolean)
         fun showCharacters(charactersList: List<AbstractFlexibleItem<*>>)
         fun showError(message: String?)
-//        fun onCharacterClicked(character: Character)
     }
 
     interface Presenter {
-        fun setView(charactersFragment: CharactersFragment)
+        fun setView(charactersHouseFragment: CharactersHouseFragment)
     }
 }

@@ -1,4 +1,4 @@
-package es.npatarino.android.gotchallenge.data.model.character
+package es.npatarino.android.gotchallenge.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -34,9 +34,7 @@ data class Character(
         parcel.writeString(houseName)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<Character> {
         override fun createFromParcel(parcel: Parcel): Character =

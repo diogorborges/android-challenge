@@ -1,9 +1,10 @@
-package es.npatarino.android.gotchallenge.presentation.characters
+package es.npatarino.android.gotchallenge.presentation.charactershouse
 
 import android.util.Log
 import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.common.addTo
 import es.npatarino.android.gotchallenge.data.model.Character
+import es.npatarino.android.gotchallenge.data.usecase.CharactersHouseUseCase
 import es.npatarino.android.gotchallenge.data.usecase.CharactersUseCase
 import es.npatarino.android.gotchallenge.presentation.ui.CharactersListItems
 import es.npatarino.android.gotchallenge.presentation.ui.ListHeader
@@ -13,26 +14,25 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class CharactersPresenter @Inject constructor(
-    private val charactersUseCase: CharactersUseCase
-) : CharactersContract.Presenter {
+class CharactersHousePresenter @Inject constructor(
+    private val charactersHouseUseCase: CharactersHouseUseCase
+) : CharactersHouseContract.Presenter {
 
     private val openCharacterObserver = PublishSubject.create<Character>()
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    private lateinit var view: CharactersContract.View
+    private lateinit var view: CharactersHouseContract.View
 
     companion object {
-        private const val TAG = "CharactersPresenter"
+        private const val TAG = "CharHousePresenter"
     }
 
-    override fun setView(charactersFragment: CharactersFragment) {
-        view = charactersFragment
+    override fun setView(charactersHouseFragment: CharactersHouseFragment) {
+        view = charactersHouseFragment
         setupOpenCharacterDetailsChangedEvent()
-        getCharacters()
+        getCharactersHouse()
     }
 
     private fun setupOpenCharacterDetailsChangedEvent(): Disposable =
@@ -41,8 +41,8 @@ class CharactersPresenter @Inject constructor(
                 { /**view.onCharacterClicked(it) */ },
                 { Log.e(TAG, "Error: $it") })
 
-    private fun getCharacters() {
-        val disposable = charactersUseCase.getCharacters()
+    private fun getCharactersHouse() {
+        val disposable = charactersHouseUseCase.getCharactersHouse()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
@@ -78,17 +78,5 @@ class CharactersPresenter @Inject constructor(
 
     private fun onError(throwable: Throwable) = view.showError(throwable.message)
 
-    fun searchQuery(query: String) {
-        val disposable = charactersUseCase.searchQuery(query)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .debounce(300, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-            .filter { it.isNotEmpty() }
-            .distinct()
-            .subscribe(this::onSuccess, this::onError)
-        disposable.addTo(compositeDisposable)
-    }
-
     fun destroy() = compositeDisposable.dispose()
-
 }

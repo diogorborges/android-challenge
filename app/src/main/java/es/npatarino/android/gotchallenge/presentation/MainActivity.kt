@@ -8,6 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import es.npatarino.android.gotchallenge.GotApplication
 import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.presentation.characters.CharactersFragment
+import es.npatarino.android.gotchallenge.presentation.houses.HousesFragment
 import kotlinx.android.synthetic.main.activity_container.toolbar
 import kotlinx.android.synthetic.main.activity_main.navigation
 
@@ -42,14 +43,14 @@ class MainActivity : AppCompatActivity(),
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_sources -> {
+            R.id.navigation_characters -> {
                 title = CharactersFragment.TITLE
                 fragment = CharactersFragment()
             }
-//            R.id.navigation_news -> {
-//                title = NewsFragment.TITLE
-//                fragment = NewsFragment()
-//            }
+            R.id.navigation_houses -> {
+                title = HousesFragment.TITLE
+                fragment = HousesFragment()
+            }
         }
 
         toolbar.title = title
