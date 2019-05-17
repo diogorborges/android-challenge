@@ -7,7 +7,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GotApiLocalDataSource @Inject constructor(
+class GotLocalDataSource @Inject constructor(
     private val charactersDao: CharactersDao,
     private val housesDao: HousesDao
 ) {

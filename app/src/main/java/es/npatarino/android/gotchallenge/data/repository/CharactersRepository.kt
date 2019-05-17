@@ -6,7 +6,7 @@ import android.util.Log
 import es.npatarino.android.gotchallenge.common.ListUtils
 import es.npatarino.android.gotchallenge.common.hasNetwork
 import es.npatarino.android.gotchallenge.data.NetworkException
-import es.npatarino.android.gotchallenge.data.local.GotApiLocalDataSource
+import es.npatarino.android.gotchallenge.data.local.GotLocalDataSource
 import es.npatarino.android.gotchallenge.data.model.Character
 import es.npatarino.android.gotchallenge.data.model.House
 import es.npatarino.android.gotchallenge.data.remote.GotRemoteDataSource
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class CharactersRepository @Inject constructor(
     private val gotRemoteDataSource: GotRemoteDataSource,
-    private val gotLocalDataSource: GotApiLocalDataSource,
+    private val gotLocalDataSource: GotLocalDataSource,
     private val context: Context
 ) {
 
@@ -44,11 +44,11 @@ class CharactersRepository @Inject constructor(
             true -> {
                 gotRemoteDataSource.getCharacters()
                     .doOnSuccess {
-                        val houseList = createHouseList(it)
-                        persistHouses(houseList)
+                        persistCharacters(it)
                     }
                     .doOnSuccess {
-                        persistCharacters(it)
+                        val houseList = createHouseList(it)
+                        persistHouses(houseList)
                     }
                     .doOnError {
                         Log.i(TAG, "Error ${it.message}")

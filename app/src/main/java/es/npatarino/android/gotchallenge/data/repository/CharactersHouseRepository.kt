@@ -1,18 +1,13 @@
 package es.npatarino.android.gotchallenge.data.repository
 
-import es.npatarino.android.gotchallenge.data.local.GotApiLocalDataSource
+import es.npatarino.android.gotchallenge.data.local.GotLocalDataSource
 import es.npatarino.android.gotchallenge.data.model.Character
 import io.reactivex.Single
 import javax.inject.Inject
 
 class CharactersHouseRepository @Inject constructor(
-    private val gotLocalDataSource: GotApiLocalDataSource
+    private val gotLocalDataSource: GotLocalDataSource
 ) {
-
-    companion object {
-        private const val TAG = "CharHouseRepository"
-    }
-
     fun getCharactersHouse(houseId: String): Single<ArrayList<Character>> =
         gotLocalDataSource.getCharactersHouse(houseId)
 }
