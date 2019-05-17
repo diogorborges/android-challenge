@@ -29,7 +29,7 @@
             android:textSize="@dimen/large_text_size"
             app:layout_constraintBottom_toTopOf="@+id/descriptionText"
             app:layout_constraintStart_toEndOf="@id/thumbnailImage"
-            tools:text="Daenerys Targaryen" />
+            tools:text="@string/name_default" />
 
         <TextView
             android:id="@+id/descriptionText"
@@ -43,7 +43,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
-            tools:text="Daenerys Targaryen is the daughter of King Aerys II Targaryen (also referred to as The Mad King) and his sister-wife Rhaella, and is one of the last survivors of House Targaryen. She serves as the third-person narrator of thirty-one chapters throughout A Game of Thrones, A Clash of Kings, A Storm of Swords, and A Dance with Dragons. She is the only monarch or claimant of such given point of view chapters in the novels. Thirteen years before the events of the series, she was born in the midst of a storm, earning her the nickname 'Stormborn'. Shortly thereafter, Daenerys and her brother Viserys fled to Braavos; Rhaella had died in childbirth. They spent the following years wandering the Free Cities." />
+            tools:text="@string/description_default" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,4 +32,8 @@
 
     <!-- Header -->
     <dimen name="header_margin_top">30dp</dimen>
+    <dimen name="thumbail_detail_size">100dp</dimen>
+    <dimen name="appbar_poster_height">300dp</dimen>
+    <dimen name="collapsing_expanded_end">64dp</dimen>
+    <dimen name="collapsing_expanded_start">48dp</dimen>
 </resources>

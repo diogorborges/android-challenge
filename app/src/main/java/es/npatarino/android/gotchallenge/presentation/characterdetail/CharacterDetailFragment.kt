@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import es.npatarino.android.gotchallenge.GotApplication
 import es.npatarino.android.gotchallenge.R
+import es.npatarino.android.gotchallenge.common.getCharacterImage
 import es.npatarino.android.gotchallenge.common.inflate
+import es.npatarino.android.gotchallenge.common.setThumbnailImage
 import es.npatarino.android.gotchallenge.data.model.Character
 import es.npatarino.android.gotchallenge.presentation.MainActivity
 import es.npatarino.android.gotchallenge.presentation.characters.CharactersFragment
-import es.npatarino.android.gotchallenge.presentation.charactershouse.CharactersHousePresenter
-import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
-import javax.inject.Inject
+import es.npatarino.android.gotchallenge.presentation.charactershouse.CharactersHouseFragment
+import kotlinx.android.synthetic.main.fragment_character_detail.descriptionText
+import kotlinx.android.synthetic.main.fragment_character_detail.nameText
+import kotlinx.android.synthetic.main.fragment_character_detail.thumbnailImage
 
 class CharacterDetailFragment : Fragment() {
 
@@ -40,12 +42,26 @@ class CharacterDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val character = arguments?.getParcelable<Character>(CharactersFragment.KEY)
-        character?.let { setupUI(it) }
+        arguments?.getParcelable<Character>(CharactersFragment.KEY)?.let { setupUI(it) }
+            ?: arguments?.getParcelable<Character>(CharactersHouseFragment.KEY)?.let { setupUI(it) }
     }
 
-    private fun setupUI(character: Character?) {
+    private fun setupUI(character: Character) = with(character) {
+        setCharacterImage(name)
+        setCharacterName(name)
+        setCharacterDescription(description)
+    }
 
+    private fun setCharacterDescription(description: String) = with(descriptionText) {
+        text = description
+    }
+
+    private fun setCharacterName(name: String) = with(nameText) {
+        text = name
+    }
+
+    private fun setCharacterImage(name: String) = with(thumbnailImage) {
+        setThumbnailImage(this, getCharacterImage(name))
     }
 
     override fun onResume() {
