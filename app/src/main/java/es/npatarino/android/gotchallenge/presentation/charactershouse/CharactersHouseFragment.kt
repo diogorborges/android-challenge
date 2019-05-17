@@ -20,10 +20,10 @@ import es.npatarino.android.gotchallenge.presentation.characterdetail.CharacterD
 import es.npatarino.android.gotchallenge.presentation.houses.HousesFragment
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import kotlinx.android.synthetic.main.fragment_characters.charactersList
 import kotlinx.android.synthetic.main.fragment_characters.errorText
 import kotlinx.android.synthetic.main.fragment_characters.progressBarLayout
 import kotlinx.android.synthetic.main.fragment_characters.searchView
-import kotlinx.android.synthetic.main.fragment_characters.sourcesList
 import javax.inject.Inject
 
 class CharactersHouseFragment : Fragment(), CharactersHouseContract.View {
@@ -63,9 +63,9 @@ class CharactersHouseFragment : Fragment(), CharactersHouseContract.View {
         adapter = FlexibleAdapter(ArrayList<AbstractFlexibleItem<*>>())
         adapter.isAnimateChangesWithDiffUtil = true
 
-        sourcesList.adapter = adapter
-        sourcesList.layoutManager = LinearLayoutManager(context)
-        sourcesList.isNestedScrollingEnabled = true
+        charactersList.adapter = adapter
+        charactersList.layoutManager = LinearLayoutManager(context)
+        charactersList.isNestedScrollingEnabled = true
 
         searchView.gone()
     }
@@ -76,7 +76,7 @@ class CharactersHouseFragment : Fragment(), CharactersHouseContract.View {
     }
 
     private fun showErrorMessage() {
-        sourcesList.gone()
+        charactersList.gone()
         errorText.visible()
     }
 

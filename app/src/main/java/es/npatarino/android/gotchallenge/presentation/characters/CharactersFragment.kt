@@ -19,10 +19,10 @@ import es.npatarino.android.gotchallenge.presentation.MainActivity
 import es.npatarino.android.gotchallenge.presentation.characterdetail.CharacterDetailFragment
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import kotlinx.android.synthetic.main.fragment_characters.charactersList
 import kotlinx.android.synthetic.main.fragment_characters.errorText
 import kotlinx.android.synthetic.main.fragment_characters.progressBarLayout
 import kotlinx.android.synthetic.main.fragment_characters.searchView
-import kotlinx.android.synthetic.main.fragment_characters.sourcesList
 import javax.inject.Inject
 
 class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQueryTextListener {
@@ -63,9 +63,9 @@ class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQue
         adapter = FlexibleAdapter(ArrayList<AbstractFlexibleItem<*>>())
         adapter.isAnimateChangesWithDiffUtil = true
 
-        sourcesList.adapter = adapter
-        sourcesList.layoutManager = LinearLayoutManager(context)
-        sourcesList.isNestedScrollingEnabled = true
+        charactersList.adapter = adapter
+        charactersList.layoutManager = LinearLayoutManager(context)
+        charactersList.isNestedScrollingEnabled = true
 
         searchView.setOnQueryTextListener(this)
     }
@@ -78,7 +78,7 @@ class CharactersFragment : Fragment(), CharactersContract.View, SearchView.OnQue
     }
 
     private fun showErrorMessage() {
-        sourcesList.gone()
+        charactersList.gone()
         errorText.visible()
     }
 

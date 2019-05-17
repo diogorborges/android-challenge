@@ -20,7 +20,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import kotlinx.android.synthetic.main.fragment_characters.errorText
 import kotlinx.android.synthetic.main.fragment_characters.progressBarLayout
-import kotlinx.android.synthetic.main.fragment_characters.sourcesList
+import kotlinx.android.synthetic.main.fragment_houses.housesList
 import javax.inject.Inject
 
 class HousesFragment : Fragment(), HousesContract.View {
@@ -59,9 +59,9 @@ class HousesFragment : Fragment(), HousesContract.View {
         adapter = FlexibleAdapter(ArrayList<AbstractFlexibleItem<*>>())
         adapter.isAnimateChangesWithDiffUtil = true
 
-        sourcesList.adapter = adapter
-        sourcesList.layoutManager = LinearLayoutManager(context)
-        sourcesList.isNestedScrollingEnabled = true
+        housesList.adapter = adapter
+        housesList.layoutManager = LinearLayoutManager(context)
+        housesList.isNestedScrollingEnabled = true
     }
 
     override fun onResume() {
@@ -70,7 +70,7 @@ class HousesFragment : Fragment(), HousesContract.View {
     }
 
     private fun showErrorMessage() {
-        sourcesList.gone()
+        housesList.gone()
         errorText.visible()
     }
 
