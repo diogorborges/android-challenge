@@ -3,7 +3,6 @@ package es.npatarino.android.gotchallenge.presentation.houses
 import android.util.Log
 import es.npatarino.android.gotchallenge.R
 import es.npatarino.android.gotchallenge.common.addTo
-import es.npatarino.android.gotchallenge.data.model.Character
 import es.npatarino.android.gotchallenge.data.model.House
 import es.npatarino.android.gotchallenge.data.usecase.HousesUseCase
 import es.npatarino.android.gotchallenge.presentation.ui.HousesListItems
@@ -38,7 +37,7 @@ class HousesPresenter @Inject constructor(
     private fun setupOpenHousesDetailsChangedEvent(): Disposable =
         openHouseObserver
             .subscribe(
-                { view.onHouseClicked(it)  },
+                { view.onHouseClicked(it) },
                 { Log.e(TAG, "Error: $it") })
 
     private fun getHouses() {

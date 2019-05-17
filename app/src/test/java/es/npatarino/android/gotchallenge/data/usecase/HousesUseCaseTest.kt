@@ -2,7 +2,6 @@ package es.npatarino.android.gotchallenge.data.usecase
 
 import es.npatarino.android.gotchallenge.data.model.House
 import es.npatarino.android.gotchallenge.data.repository.HousesRepository
-import io.reactivex.Observable
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test

@@ -2,12 +2,9 @@ package es.npatarino.android.gotchallenge.data.repository
 
 import es.npatarino.android.gotchallenge.data.local.GotLocalDataSource
 import es.npatarino.android.gotchallenge.data.model.Character
-import es.npatarino.android.gotchallenge.data.model.House
 import io.reactivex.Single
-import org.junit.Test
-
-import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito

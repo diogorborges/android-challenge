@@ -2,7 +2,6 @@ package es.npatarino.android.gotchallenge.data.usecase
 
 import es.npatarino.android.gotchallenge.data.model.Character
 import es.npatarino.android.gotchallenge.data.repository.CharactersRepository
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
