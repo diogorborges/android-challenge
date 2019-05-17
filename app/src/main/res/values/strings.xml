@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">GoT - Challenge</string>
     <string name="title_activity_home">Game of Thrones</string>
-    <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="title_houses">Houses</string>
+    <string name="title_characters">Characters</string>
+    <string name="houses_header">Characters Place</string>
+    <string name="characters_header">Who\'s the real King?</string>
+    <string name="article_header">Your latest articles</string>
+    <string name="error_text">Please try again.</string>
+    <string name="no_name">No Name</string>
+    <string name="description_default">Daenerys Targaryen is the daughter of King Aerys II Targaryen (also referred to as The Mad King) and his sister-wife Rhaella, and is one of the last survivors of House Targaryen. She serves as the third-person narrator of thirty-one chapters throughout A Game of Thrones, A Clash of Kings, A Storm of Swords, and A Dance with Dragons. She is the only monarch or claimant of such given point of view chapters in the novels. Thirteen years before the events of the series, she was born in the midst of a storm, earning her the nickname \'Stormborn\'. Shortly thereafter, Daenerys and her brother Viserys fled to Braavos; Rhaella had died in childbirth. They spent the following years wandering the Free Cities.</string>
+    <string name="name_default">Daenerys Targaryen</string>
 </resources>
